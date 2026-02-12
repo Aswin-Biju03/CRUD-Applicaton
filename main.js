@@ -4,6 +4,11 @@ const form = document.getElementById(`userForm`);
 const tableBody = document.getElementById(`tableBody`);
 const editIndexInput = document.getElementById(`editIndex`);
 
+if (sessionStorage.getItem("users")) {
+  users = JSON.parse(sessionStorage.getItem("users"));
+  displayUsers();
+}
+
 // add entry to users
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -18,10 +23,11 @@ form.addEventListener("submit", (e) => {
     editIndexInput.value = "";
   }
   form.reset();
-  console.log(users);
+  // console.log(users);
+  sessionStorage.setItem("users", JSON.stringify(users));
   displayUsers();
 });
-const displayUsers = () => {
+function displayUsers() {
   tableBody.innerHTML = "";
   users.forEach((user, index) => {
     tableBody.innerHTML += `<tr>
@@ -36,7 +42,7 @@ const displayUsers = () => {
             </td>
           </tr>`;
   });
-};
+}
 
 const editUser = (index) => {
   document.getElementById("name").value = users[index].name;
@@ -47,6 +53,7 @@ const editUser = (index) => {
 const deleteUser = (index) => {
   if (confirm(`Are you sure you want to delete the data?`)) {
     users.splice(index, 1);
+    sessionStorage.setItem("users", JSON.stringify(users));
     displayUsers();
   }
 };
