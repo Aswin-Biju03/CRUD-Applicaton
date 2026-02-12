@@ -18,6 +18,7 @@
 
       <form id="userForm">
         <div class="row mb-3">
+          <input type="hidden" id="editIndex" />
           <div class="col-md-4">
             <input
               type="text"
@@ -54,19 +55,7 @@
           </tr>
         </thead>
 
-        <tbody id="tableBody">
-          <tr>
-            <td>1</td>
-            <td>name</td>
-            <td>email</td>
-            <td>
-              <div class="d-flex gap-2">
-                <button class="btn btn-warning btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+        <tbody id="tableBody"></tbody>
       </table>
     </div>
 
